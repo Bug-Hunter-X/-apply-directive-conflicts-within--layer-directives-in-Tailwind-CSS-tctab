@@ -1,0 +1,18 @@
+One solution to address this unexpected behavior is to refactor the CSS and potentially avoid using `@apply` where conflicts might occur. Instead of relying on `@apply` to manage the styles within `@layer` consider writing the styles explicitly. This gives greater control and clarity over how the styles are applied, making it easier to resolve conflicts.
+
+```css
+/* base layer */
+@layer base {
+  .button {
+    background-color: blue;
+  }
+}
+
+/* component layer */
+@layer components {
+  .button {
+    background-color: red;
+  }
+}
+```
+This approach ensures that the layer structure correctly manages the priority and order of styles.  It helps to eliminate the ambiguity associated with `@apply` in complex scenarios with layers. Another option could involve using more specific selectors or utility classes to avoid the conflict entirely.
