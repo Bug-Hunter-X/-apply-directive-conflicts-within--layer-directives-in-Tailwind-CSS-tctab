@@ -1,0 +1,18 @@
+The issue arises when using Tailwind's `@apply` directive within a `@layer` directive, specifically when the applied styles conflict with styles defined within the same layer or other layers.  The unexpected behavior occurs because the order of style application might not always follow the intuition or the order of declarations.  For example, if a base layer defines a style, and a component layer tries to override that using `@apply`, the override might not always take effect. This often leads to styles not being applied correctly or being unexpectedly overwritten.  Here's an example:
+
+```css
+/* base layer */
+@layer base {
+  .button {
+    @apply bg-blue-500;
+  }
+}
+
+/* component layer */
+@layer components {
+  .button {
+    @apply bg-red-500;
+  }
+}
+```
+In this case, the button might still appear blue, even though the `components` layer is supposed to override the `base` layer.
